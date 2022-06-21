@@ -16,7 +16,7 @@ Links
 Sending data:
 
 ```bash
-KINESIS_STREAM_INPUT=ride_events
+KINESIS_STREAM_INPUT=ride_evenets
 aws kinesis put-record \
     --stream-name ${KINESIS_STREAM_INPUT} \
     --partition-key 1 \
@@ -107,7 +107,7 @@ Running the test
 
 ```bash
 export PREDICTIONS_STREAM_NAME="ride_predictions"
-export RUN_ID="e1efc53e9bd149078b0c12aeaa6365df"
+export RUN_ID="62953e0cf15a48dd8434001c4b5af3b4"
 export TEST_RUN="True"
 
 python test.py
@@ -122,19 +122,19 @@ docker build -t stream-model-duration:v1 .
 docker run -it --rm \
     -p 8080:8080 \
     -e PREDICTIONS_STREAM_NAME="ride_predictions" \
-    -e RUN_ID="e1efc53e9bd149078b0c12aeaa6365df" \
+    -e RUN_ID="62953e0cf15a48dd8434001c4b5af3b4" \
     -e TEST_RUN="True" \
-    -e AWS_DEFAULT_REGION="eu-west-1" \
+    -e AWS_DEFAULT_REGION="ap-southeast-1" \
     stream-model-duration:v1
 
 docker run -it --rm \
     -p 8080:8080 \
     -e PREDICTIONS_STREAM_NAME="ride_predictions" \
-    -e RUN_ID="e1efc53e9bd149078b0c12aeaa6365df" \
+    -e RUN_ID="62953e0cf15a48dd8434001c4b5af3b4" \
     -e TEST_RUN="True" \
     -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" \
     -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" \
-    -e AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION}" \
+    -e AWS_DEFAULT_REGION="ap-southeast-1" \
     stream-model-duration:v1
 ```
 
@@ -157,12 +157,16 @@ $(aws ecr get-login --no-include-email)
 
 Pushing 
 
+
+
 ```bash
-REMOTE_URI="387546586013.dkr.ecr.eu-west-1.amazonaws.com/duration-model"
-REMOTE_TAG="v1"
+REMOTE_URI="498150577381.dkr.ecr.ap-southeast-1.amazonaws.com/duration-model"
+REMOTE_TAG="aws"
 REMOTE_IMAGE=${REMOTE_URI}:${REMOTE_TAG}
 
-LOCAL_IMAGE="stream-model-duration:v1"
-docker tag ${LOCAL_IMAGE} ${REMOTE_IMAGE}
-docker push ${REMOTE_IMAGE}
+# LOCAL_IMAGE="stream-model-duration:aws"
+# docker tag ${LOCAL_IMAGE} ${REMOTE_IMAGE}
+# docker push ${REMOTE_IMAGE}
+docker buildx build --platform linux/amd64 -t 498150577381.dkr.ecr.ap-southeast-1.amazonaws.com/duration-model --push .
 ```
+498150577381.dkr.ecr.ap-southeast-1.amazonaws.com/duration-model:v1
