@@ -11,14 +11,15 @@ Starting the MLflow server with S3:
 ```bash
 mlflow server \
     --backend-store-uri=sqlite:///mlflow.db \
-    --default-artifact-root=s3://mlflow-models-alexey/
+    --default-artifact-root=s3://f-mflow/
+    # --default-artifact-root=s3://mlflow-models-alexey/
 ```
 
 Downloading the artifact
 
 ```bash
 export MLFLOW_TRACKING_URI="http://127.0.0.1:5000"
-export MODEL_RUN_ID="6dd459b11b4e48dc862f4e1019d166f6"
+export MODEL_RUN_ID="62953e0cf15a48dd8434001c4b5af3b4"
 
 mlflow artifacts download \
     --run-id ${MODEL_RUN_ID} \
