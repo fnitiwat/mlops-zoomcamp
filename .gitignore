@@ -13,3 +13,8 @@ venv
 **/artifacts/
 **/models/
 __pycache__
+
+*.png
+
+*.bin
+.vscode
