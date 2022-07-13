@@ -5,8 +5,9 @@ files = [("green_tripdata_2022-01.parquet", "."), ("green_tripdata_2021-01.parqu
 
 print(f"Download files:")
 for file, path in files:
-    url = f"https://nyc-tlc.s3.amazonaws.com/trip+data/{file}"
+    url = f"https://d37ci6vzurychx.cloudfront.net/trip-data/{file}"
     resp = requests.get(url, stream=True)
+    resp.raise_for_status()
     save_path = f"{path}/{file}"
     with open(save_path, "wb") as handle:
         for data in tqdm(resp.iter_content(),

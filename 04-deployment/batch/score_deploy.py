@@ -8,9 +8,9 @@ DeploymentSpec(
     name="ride_duration_prediction",
     parameters={
         "taxi_type": "green",
-        "run_id": "e1efc53e9bd149078b0c12aeaa6365df",
+        "run_id": "62953e0cf15a48dd8434001c4b5af3b4",
     },
-    flow_storage="fb2163c7-c9ac-448b-b225-0fe9a9ae197a",
+    flow_storage="5fb2a708-809c-4188-a3a6-2460171b0247",
     schedule=CronSchedule(cron="0 3 2 * *"),
     flow_runner=SubprocessFlowRunner(),
     tags=["ml"]
