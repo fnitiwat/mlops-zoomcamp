@@ -12,6 +12,7 @@ venv
 .idea
 **/artifacts/
 **/models/
+
 __pycache__
 
 *.png
@@ -21,3 +22,4 @@ __pycache__
 
 *.DS_Store
 04-deployment/batch/storage/
+
