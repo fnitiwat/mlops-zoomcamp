@@ -2,12 +2,12 @@ LOCAL_TAG:=$(shell date +"%Y-%m-%d-%H-%M")
 LOCAL_IMAGE_NAME:=stream-model-duration:${LOCAL_TAG}
 
 test:
-	pytest tests/
+	python3 -m pytest tests/
 
 quality_checks:
 	isort .
 	black .
-	pylint --recursive=y .
+	python3 -m pylint --recursive=y .
 
 build: quality_checks test
 	docker build -t ${LOCAL_IMAGE_NAME} .
