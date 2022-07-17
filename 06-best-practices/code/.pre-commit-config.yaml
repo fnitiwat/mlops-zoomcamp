@@ -39,5 +39,5 @@ repos:
       pass_filenames: false
       always_run: true
       args: [
-        "tests/"
+        "06-best-practices/code/tests/"
       ]
