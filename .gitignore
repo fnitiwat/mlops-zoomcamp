@@ -13,13 +13,15 @@ venv
 **/artifacts/
 **/models/
 
-__pycache__
-
-*.png
-
-*.bin
-.vscode
-
-*.DS_Store
+__pycache__/
+**.env
+**.terraform/
+**.terraform.lock*
+**terraform.tfstate*
 04-deployment/batch/storage/
 
+.vscode/settings.json
+.DS_Store
+*.bin
+*/.vscode
+.vscode

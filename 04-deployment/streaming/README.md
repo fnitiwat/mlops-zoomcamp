@@ -1,11 +1,11 @@
 ## Machine Learning for Streaming
 
 * Scenario
-* Creating the role 
+* Creating the role
 * Create a Lambda function, test it
 * Create a Kinesis stream
 * Connect the function to the stream
-* Send the records 
+* Send the records
 
 Links
 
@@ -13,7 +13,8 @@ Links
 
 ## Code snippets
 
-Sending data:
+### Sending data
+
 
 ```bash
 KINESIS_STREAM_INPUT=ride_evenets
@@ -37,7 +38,7 @@ Record example
         "PULocationID": 130,
         "DOLocationID": 205,
         "trip_distance": 3.66
-    }, 
+    },
     "ride_id": 123
 }
 ```
@@ -53,12 +54,13 @@ aws kinesis put-record \
             "PULocationID": 130,
             "DOLocationID": 205,
             "trip_distance": 3.66
-        }, 
+        },
         "ride_id": 156
     }'
 ```
 
-Test event:
+### Test event
+
 
 ```json
 {
@@ -83,8 +85,7 @@ Test event:
 }
 ```
 
-
-Reading from the stream
+### Reading from the stream
 
 ```bash
 KINESIS_STREAM_OUTPUT='ride_predictions'
@@ -101,9 +102,10 @@ SHARD_ITERATOR=$(aws kinesis \
 RESULT=$(aws kinesis get-records --shard-iterator $SHARD_ITERATOR)
 
 echo ${RESULT} | jq -r '.Records[0].Data' | base64 --decode
-``` 
+```
 
-Running the test
+
+### Running the test
 
 ```bash
 export PREDICTIONS_STREAM_NAME="ride_predictions"
@@ -113,8 +115,7 @@ export TEST_RUN="True"
 python test.py
 ```
 
-
-Putting everything to Docker
+### Putting everything to Docker
 
 ```bash
 docker build -t stream-model-duration:v1 .
@@ -127,6 +128,14 @@ docker run -it --rm \
     -e AWS_DEFAULT_REGION="ap-southeast-1" \
     stream-model-duration:v1
 ```
+
+URL for testing:
+
+* http://localhost:8080/2015-03-31/functions/function/invocations
+
+
+
+### Configuring AWS CLI to run in Docker
 
 To use AWS CLI, you may need to set the env variables:
 
@@ -154,10 +163,7 @@ docker run -it --rm \
     stream-model-duration:v1
 ```
 
-URL for testing:
-
-* http://localhost:8080/2015-03-31/functions/function/invocations
-
+### Publishing Docker images
 
 Creating an ECR repo
 
@@ -171,7 +177,7 @@ Logging in
 $(aws ecr get-login --no-include-email)
 ```
 
-Pushing 
+Pushing
 
 
 
