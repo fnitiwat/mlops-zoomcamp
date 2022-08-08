@@ -1,0 +1,41 @@
+variable "aws_region" {
+  description = "AWS region to create resources"
+  default     = "ap-southeast-1"
+}
+
+variable "project_id" {
+  description = "project_id"
+  default = "mlops-zoomcamp"
+}
+
+variable "source_stream_name" {
+  description = ""
+  default = "source_ride_predictions"
+}
+
+variable "output_stream_name" {
+  description = ""
+  default = "output_ride_predictions"
+}
+
+variable "model_bucket" {
+  description = ""
+  default = "f-mflow"
+}
+
+variable "lambda_function_local_path" {
+  description = ""
+}
+
+variable "docker_image_local_path" {
+  description = ""
+}
+
+variable "ecr_repo_name" {
+  description = ""
+  default = "mlops_zoomcamp_terraform"
+}
+
+variable "lambda_function_name" {
+  description = ""
+}
